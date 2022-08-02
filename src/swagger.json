@@ -1,0 +1,437 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My challenger Open Circle Shipping Company",
+        "description": "This API has like objetive make administration data from Shipping Company",
+        "contact":  {
+            "email": "lucasdias2906@gmail.com"
+        },
+        "version":  "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3302"
+        }
+    ],
+    "paths": {
+        "/shipping": {
+            "post": {
+                "summary": "Register of shippings",
+                "description": "This route responsible about register shippigs",
+                "tags": ["Shipping"],
+                "requestBody":  {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Shipping"
+                            },
+                            "examples": {
+                                "shippig": {
+                                    "value": {
+                                        "name": "Route from Sao paulo to Minas Gerais",
+                                        "distance": 2323,
+                                        "id_typeVehicle": "b57b4c41-06f7-4617-8777-7709b8cef2be",
+                                        "value": "300",
+                                        "status": "pendent",
+                                        "data": "2022-07-31 16:14:18"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "shippig": {
+                                        "value": {
+                                            "error": "No was possible show the data, please check code"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Shipping"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Show the shippings",
+                "description": "This route responsible about show all shipping",
+                "tags": ["Shipping"],
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Shipping"
+                                },
+                                "examples": {
+                                    "shippig": {
+                                        "value": {
+                                            "id": "c8a75991-c347-409a-a546-42074c36aea4",
+                                            "name_shipping": "Route from Sao paulo to Minas Gerais",
+                                            "value": "300",
+                                            "status": "pendent",
+                                            "data": "2022-07-31 16:14:18"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "No was possible show the data, please check code"
+                    }
+                }
+            }
+        },
+        "/drivers": {
+            "post": {
+                "summary": "Register of drivers",
+                "description": "This route responsible about register drivers",
+                "tags": ["Drivers"],
+                "requestBody":  {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Drivers"
+                            },
+                            "examples": {
+                                "driver": {
+                                    "value": {
+                                        "name_drivers": "Jacinto",
+                                        "id_shipping": "300"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Error, please check the data"
+                    },
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Drivers"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Show the drivers",
+                "description": "This route responsible about show all drivers",
+                "tags": ["Drivers"],
+                "responses": {
+                    "400": {
+                        "description": "No was possible show the data, please check code"
+                    },
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Drivers"
+                                },
+                                "examples": {
+                                    "drivers": {
+                                        "value": {
+                                            "idDrivers": "b57b4c41-06f7-4617-8777-7709b8cef2be",
+                                            "name_driver": "Jacinto",
+                                            "Shipping": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id_shipping": "9cd653e8-78df-49df-9c91-4c482d0a613e",
+                                                    "name_shipping": "Minas para Sp",
+                                                    "value": "450",
+                                                    "status": "closed",
+                                                    "data": "2022-07-31 16:14:18"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vehicle": {
+            "post": {
+                "summary": "Register of vehicle",
+                "description": "This route responsible about register vehicle",
+                "tags": ["Vehicle"],
+                "requestBody":  {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Vehicle"
+                            },
+                            "examples": {
+                                "vehicle": {
+                                    "value": {
+                                        "name_vehicle": "Scania",
+                                        "idDriver": "9190c69c-4878-452d-b3ba-a4f77b2b2eb0",
+                                        "idShipping": "f36ed825-10a8-4740-83a2-af499b9822a0"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Error, please check the data"
+                    },
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Vehicle"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Show the vehicle",
+                "description": "This route responsible about show all vehicle",
+                "tags": ["Vehicle"],
+                "responses": {
+                    "400": {
+                        "description": "No was possible show the data, please check code"
+                    },
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Vehicle"
+                                },
+                                "examples": {
+                                    "vehicle": {
+                                        "value": {
+                                            "idVehicle": "b57b4c41-06f7-4617-8777-7709b8cef2be",
+                                            "name_Vehicle": "Scania",
+                                            "Driver": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id_driver": "9cd653e8-78df-49df-9c91-4c482d0a613e",
+                                                    "name_shipping": "Minas para Sp",
+                                                    "value": "450",
+                                                    "status": "closed",
+                                                    "data": "2022-07-31 16:14:18"
+                                                }
+                                            },
+                                            "Shipping": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id_shipping": "9cd653e8-78df-49df-9c91-4c482d0a613e",
+                                                    "name_shipping": "Minas para Sp",
+                                                    "value": "450",
+                                                    "status": "closed",
+                                                    "data": "2022-07-31 16:14:18"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/typeVehicle": {
+            "post": {
+                "summary": "Register of type vehicle",
+                "description": "This route responsible about register type vehicle",
+                "tags": ["TypeVehicle"],
+                "requestBody":  {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TypeVehicle"
+                            },
+                            "examples": {
+                                "typeVehicle": {
+                                    "value": {
+                                        "capacity": "1213",
+                                        "height": "2323",
+                                        "width": "2345",
+                                        "lenght": "300",
+                                        "weight_total": "12123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "shippig": {
+                                        "value": {
+                                            "error": "No was possible show the data, please check code"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Shipping"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Show the type vehicle",
+                "description": "This route responsible about show all type vehicle",
+                "tags": ["TypeVehicle"],
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/TypeVehicle"
+                                },
+                                "examples": {
+                                    "typeVehicle": {
+                                        "value": {
+                                            "capacity": "1213",
+                                            "height": "2323",
+                                            "width": "2345",
+                                            "lenght": "300",
+                                            "weight_total": "12123"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "No was possible show the data, please check code"
+                    }
+                }
+            }
+        }
+        
+        
+    },
+    "components":   {
+        "schemas":{
+            "Shipping": {
+                "type": "object",
+                "properties":   {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "enum"
+                    },
+                    "data": {
+                        "type": "date"
+                    }
+                }
+            },
+            "Drivers": {
+                "type": "object",
+                "properties":   {
+                    "idDriver": {
+                        "type": "string"
+                    },
+                    "name_driver": {
+                        "type": "string"
+                    },
+                    "id_shipping": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Vehicle": {
+                "type": "object",
+                "properties":   {
+                    "name_vehicle": {
+                        "type": "string"
+                    },
+                    "id_driver": {
+                        "type": "string"
+                    },
+                    "id_shipping": {
+                        "type": "string"
+                    }
+                }
+            },
+            "TypeVehicle": {
+                "type": "object",
+                "properties":   {
+                    "idTypeVehicle": {
+                        "type": "string"
+                    },
+                    "capacity": {
+                        "type": "string"
+                    },
+                    "height": {
+                        "type": "string"
+                    },
+                    "width": {
+                        "type": "string"
+                    },
+                    "lenght": {
+                        "type": "string"
+                    },
+                    "weight_total": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
