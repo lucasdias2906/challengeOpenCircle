@@ -11,8 +11,6 @@ import swaggerDocs from './swagger.json';
 
 const host = process.env.TYPEORM_CONNECTION
 
-console.log("HSOS", host)
-
 import './config/data-source'
 
 const app = express()
